@@ -69,6 +69,7 @@ The dataset will be structured using the SQL scripts provided.
 
 **Data Set Explanation:**
 **Tables and Data Description**
+
 **1. author Table**
 Purpose: Contains information about authors.
 Columns:
