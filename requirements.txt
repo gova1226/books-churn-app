@@ -3,4 +3,4 @@ pandas
 numpy
 mysql-connector-python
 joblib
-tensorflow
+tensorflow-cpu
