@@ -10,7 +10,7 @@ from tensorflow.keras.models import load_model
 # ✅ Streamlit Page Config
 # -------------------------------
 st.set_page_config(
-    page_title="\ud83d\udcda Bookstore Customer Analytics",
+    page_title="📚 Bookstore Customer Analytics",
     layout="centered"
 )
 
@@ -57,9 +57,9 @@ st.markdown("""
 # -------------------------------
 # ✅ Sidebar Navigation
 # -------------------------------
-st.sidebar.title("\ud83d\udcda Bookstore App Navigation")
-page = st.sidebar.radio("Go to:", ["\ud83c\udfe0 Home", "\ud83d\udcc9 Customer Churn Prediction"])
-st.sidebar.caption("\ud83d\udd0d Powered by ANN \u2022 Streamlit \u2022 SQLite")
+st.sidebar.title("📚 Bookstore App Navigation")
+page = st.sidebar.radio("Go to:", ["🏠 Home", "📉 Customer Churn Prediction"])
+st.sidebar.caption("🔍 Powered by ANN • Streamlit • SQLite")
 
 # -------------------------------
 # ✅ Load ANN Model & Scaler
