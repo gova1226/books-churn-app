@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 
 # Connect or create SQLite database
-conn = sqlite3.connect("bookstore.db")
+conn = sqlite3.connect("gravity_books.db")
 
 # Load CSVs into tables
 cust_order = pd.read_csv("cust_order.csv")
