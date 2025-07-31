@@ -92,7 +92,7 @@ if page == "🏠 Home"::
 
     ---
     st.markdown("""
-    **📊 Features:**
+    ** Features:**
     - :blue[Analyze customer order history]
     - :orange[Predict churn likelihood]
     - :green[Store predictions for future actions]
