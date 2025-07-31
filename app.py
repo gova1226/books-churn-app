@@ -206,9 +206,10 @@ elif page == "📉 Customer Churn Prediction":
 
             conn = get_connection()
             cursor = conn.cursor()
-            save_query = """
+            save_query ="""
                 INSERT INTO churn_predictions (customer_id, prediction, prediction_date)
-                VALUES (?, ?, ?); """
+                VALUES (?, ?, ?);
+            """
             cursor.execute(save_query, (customer_id, predicted_class, str(today)))
             conn.commit()
             cursor.close()
