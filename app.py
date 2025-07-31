@@ -118,13 +118,13 @@ elif page == "Customer Churn Prediction":
 
         query = """
             SELECT
-                julianday('now') - julianday(MIN(order_date)) AS days_active,
-                julianday('now') - julianday(MAX(order_date)) AS days_since_last_order,
-                COUNT(DISTINCT co.order_id) AS total_orders,
-                AVG(ol.price) AS avg_book_price
-            FROM cust_order co
-            JOIN order_line ol ON co.order_id = ol.order_id
-            WHERE co.customer_id = ?;
+                julianday('now') - julianday(MIN(co."order_date")) AS days_active,
+                julianday('now') - julianday(MAX(co."order_date")) AS days_since_last_order,
+                COUNT(DISTINCT co."order_id") AS total_orders,
+                AVG(ol."price") AS avg_book_price
+                FROM cust_order co
+                JOIN order_line ol ON co."order_id" = ol."order_id"
+                WHERE co."customer_id" = ?
         """
         cursor.execute(query, (customer_id,))
         row = cursor.fetchone()
