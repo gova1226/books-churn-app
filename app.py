@@ -75,7 +75,7 @@ scaler = joblib.load('scaler.pkl')
 # ✅ DB Connection Function
 # -------------------------------
 def get_connection():
-    return sqlite3.connect("bookstore.db")
+    return sqlite3.connect("bookstore1.db")
 
 # -------------------------------
 # ✅ HOME PAGE
