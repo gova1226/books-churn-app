@@ -6,6 +6,14 @@ import datetime
 import joblib
 from tensorflow.keras.models import load_model
 
+
+conn = sqlite3.connect("bookstore.db")
+cursor = conn.cursor()
+cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+st.write("📋 Tables in DB:", cursor.fetchall())
+conn.close()
+
+
 # -------------------------------
 # ✅ Streamlit Page Config
 # -------------------------------
