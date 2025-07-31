@@ -58,7 +58,7 @@ st.markdown("""
 # ✅ Sidebar Navigation
 # -------------------------------
 st.sidebar.title("📚 Bookstore App Navigation")
-page = st.sidebar.radio("Go to:", ["🏠 Home", "📉 Customer Churn Prediction"])
+page = st.sidebar.radio("Go to:", ["Home", "Customer Churn Prediction"])
 st.sidebar.caption("🔍 Powered by ANN • Streamlit • SQLite")
 
 # -------------------------------
@@ -75,48 +75,42 @@ scaler = joblib.load('scaler.pkl')
 # ✅ DB Connection Function
 # -------------------------------
 def get_connection():
-    return sqlite3.connect("gravity_books.db")
+    return sqlite3.connect("bookstore.db")
 
 # -------------------------------
 # ✅ HOME PAGE
 # -------------------------------
-if page == "🏠 Home"::
+if page == "Home":
     st.markdown("<div class='big-title'>📚 BOOKSTORE CUSTOMER ANALYTICS</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-header'>Predict, analyze & retain your bookstore customers with AI 📈✨</div>", unsafe_allow_html=True)
 
-
     st.markdown("""
-    Welcome to your smart customer analytics app!  
-    
-    This tool uses a trained **Artificial Neural Network (ANN)** model to detect churn risk and help you grow retention.
+**📊 Features:**
+- :blue[Analyze customer order history]
+- :orange[Predict churn likelihood]
+- :green[Store predictions for future actions]
 
-    ---
-    st.markdown("""
-    ** Features:**
-    - :blue[Analyze customer order history]
-    - :orange[Predict churn likelihood]
-    - :green[Store predictions for future actions]
+---
+**💡 Why it matters:**
+Knowing which customers are likely to churn helps you:
+- Offer targeted promotions
+- Improve retention rates
+- Increase lifetime value & revenue
 
-    ---
-    **Why it matters:**
-    Knowing which customers are likely to churn helps you:
-    - Offer targeted promotions
-    - Improve retention rates
-    - Increase lifetime value & revenue
+👉 Use the sidebar to navigate to **Customer Churn Prediction** and test it now!
+""")
 
-    Use the sidebar to navigate to **Customer Churn Prediction** and test it now!
-    """)
+    st.image("bookstore.jpeg", use_container_width=True)
 
 # -------------------------------
 # ✅ CUSTOMER CHURN PREDICTION PAGE
 # -------------------------------
-elif page == "📉 Customer Churn Prediction":
+elif page == "Customer Churn Prediction":
     st.markdown("<div class='big-title'>📉 CUSTOMER CHURN PREDICTION</div>", unsafe_allow_html=True)
     st.markdown("<div class='sub-header'>🔍 Fetch customer data, analyze behavior & predict churn risk with AI.</div>", unsafe_allow_html=True)
     st.markdown("---")
 
     st.info("📌 **How it works:** Enter a valid Customer ID below. The app fetches their order history, predicts churn risk, and stores it for your retention strategy.")
-
 
     def fetch_customer_data(customer_id):
         conn = get_connection()
@@ -153,7 +147,6 @@ elif page == "📉 Customer Churn Prediction":
         customer_id = st.number_input("👤 Customer ID", min_value=1, step=1, help="Enter the numeric ID of the customer.")
         submitted = st.form_submit_button("🔍 Fetch & Predict")
 
-
     if submitted:
         row = fetch_customer_data(customer_id)
 
@@ -166,7 +159,6 @@ elif page == "📉 Customer Churn Prediction":
                 'avg_book_price': row[3]
             }
             st.write("🔍 **Fetched SQL Data:**", row_dict)
-
 
             today = datetime.date.today()
 
@@ -197,7 +189,7 @@ elif page == "📉 Customer Churn Prediction":
             probability = float(pred[0][0]) if pred.shape[1] == 1 else None
 
             if probability is not None:
-                   st.info(f"🔮 **Churn Probability:** `{probability:.2%}`")
+                st.info(f"🔮 **Churn Probability:** `{probability:.2%}`")
                 st.progress(probability)
             else:
                 st.info(f"🔮 **Raw Model Output:** `{pred.tolist()}`")
@@ -206,7 +198,7 @@ elif page == "📉 Customer Churn Prediction":
 
             conn = get_connection()
             cursor = conn.cursor()
-            save_query ="""
+            save_query = """
                 INSERT INTO churn_predictions (customer_id, prediction, prediction_date)
                 VALUES (?, ?, ?);
             """
