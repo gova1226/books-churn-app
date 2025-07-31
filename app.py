@@ -98,13 +98,13 @@ if page == "🏠 Home"::
     - :green[Store predictions for future actions]
 
     ---
-    **💡 Why it matters:**
+    **Why it matters:**
     Knowing which customers are likely to churn helps you:
     - Offer targeted promotions
     - Improve retention rates
     - Increase lifetime value & revenue
 
-    👉 Use the sidebar to navigate to **Customer Churn Prediction** and test it now!
+    Use the sidebar to navigate to **Customer Churn Prediction** and test it now!
     """)
 
 # -------------------------------
