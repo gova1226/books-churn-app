@@ -117,10 +117,10 @@ elif page == "Customer Churn Prediction":
 
         query = """
             SELECT
-                julianday('now') - julianday(MIN(co."order_date")) AS days_active, #how long the customer has been active
-                julianday('now') - julianday(MAX(co."order_date")) AS days_since_last_order, #Measures how long it’s been since the customer last ordered
-                COUNT(DISTINCT co."order_id") AS total_orders, #Counts how many distinct orders this customer has placed
-                AVG(ol."price") AS avg_book_price #Calculates the average price of books the customer has bought, based on all books across all orders for the customer
+                julianday('now') - julianday(MIN(co."order_date")) AS days_active, 
+                julianday('now') - julianday(MAX(co."order_date")) AS days_since_last_order,
+                COUNT(DISTINCT co."order_id") AS total_orders, 
+                AVG(ol."price") AS avg_book_price
                 FROM cust_order co
                 JOIN order_line ol ON co."order_id" = ol."order_id"
                 WHERE co."customer_id" = ?
