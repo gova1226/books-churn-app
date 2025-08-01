@@ -206,10 +206,12 @@ elif page == "Customer Churn Prediction":
 
             conn = get_connection() #Calls your previously defined get_connection() function. This creates a connection to the bookstore_1.db SQLite database
             cursor = conn.cursor()  #Creates a cursor object. The cursor lets you execute SQL commands on the database
+
+            #Prepares an SQL INSERT statement using parameter placeholders (?) to avoid SQL injection
             save_query = """
                 INSERT INTO churn_predictions (customer_id, prediction, prediction_date)
                 VALUES (?, ?, ?); 
-            """  #Prepares an SQL INSERT statement using parameter placeholders (?) to avoid SQL injection
+            """  
             cursor.execute(save_query, (customer_id, predicted_class, str(today)))   #Executes the prepared query with actual values. str(today) converts the datetime.date object to a string
             conn.commit()  #Commits the transaction to the database. Without this line, the insert would not be saved permanently
             cursor.close()
